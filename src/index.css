@@ -1,0 +1,1361 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  font-family: "Nunito", "Noto Sans Thai", system-ui, sans-serif;
+  color: #17152b;
+  background: #f7f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --bg: #f7f8fc;
+  --card: #fff;
+  --ink: #17152b;
+  --ink-2: #4d4a61;
+  --ink-3: #7d7a91;
+  --line: #e6e4ef;
+  --line-2: #dddbe8;
+  --primary: #6d5efc;
+  --primary-600: #5d4de8;
+  --primary-700: #5143ca;
+  --primary-soft: #efedff;
+  --red: #dc2626;
+  --green: #16834a;
+  --green-bg: #ecfdf3;
+  --radius: 17px;
+  --shadow-lg: 0 14px 36px rgba(16, 24, 40, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  overflow-y: scroll;
+  scrollbar-color: #8b8b8b #fff;
+  scroll-behavior: smooth;
+}
+html::-webkit-scrollbar {
+  width: 16px;
+}
+html::-webkit-scrollbar-track {
+  background: #fff;
+}
+html::-webkit-scrollbar-thumb {
+  background: #8b8b8b;
+  border: 4px solid #fff;
+  border-radius: 999px;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+button,
+input {
+  font: inherit;
+}
+
+.login-page {
+  background: var(--bg);
+  grid-template-columns: minmax(430px, 1.05fr) minmax(520px, 0.95fr);
+  width: 100%;
+  height: 100svh;
+  min-height: 100vh;
+  display: grid;
+  overflow: hidden;
+}
+.login-brand-panel {
+  height: 100svh;
+  min-height: 0;
+  color: var(--ink);
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 84% 18%, #c9c0ff80, #0000 28%),
+    radial-gradient(circle at 10% 78%, #e7e2ffa6, #0000 32%), #fbfaff;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 46px 28px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.login-brand-panel::after {
+  content: "";
+  z-index: -1;
+  opacity: 0.28;
+  pointer-events: none;
+  background-image: radial-gradient(#a89cf4 1px, #0000 1px);
+  background-size: 24px 24px;
+  position: absolute;
+  inset: 0;
+  mask-image: linear-gradient(to bottom right, #0000, #000 42%, #0000 78%);
+}
+.auth-visual {
+  z-index: 1;
+  pointer-events: none;
+  width: 250px;
+  height: 326px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+.auth-photo-wrap {
+  background: #fff;
+  border: 1px solid #fffffff2;
+  border-radius: 25px;
+  padding: 3px;
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 24px 50px #5743ad33;
+}
+.auth-photo-wrap img {
+  object-fit: cover;
+  border-radius: 21px;
+  width: 100%;
+  height: 100%;
+}
+.auth-live-chip,
+.auth-stat-chip {
+  backdrop-filter: blur(10px);
+  background: #ffffffd6;
+  border: 1px solid #ffffffe6;
+  display: flex;
+  position: absolute;
+  box-shadow: 0 10px 24px #46378c24;
+}
+.auth-live-chip {
+  color: var(--primary-700);
+  border-radius: 20px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  font-size: 10.5px;
+  font-weight: 800;
+  top: 28px;
+  right: -22px;
+}
+.auth-live-chip i {
+  background: #ef476f;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  box-shadow: 0 0 0 4px #ef476f24;
+}
+.auth-stat-chip {
+  border-radius: 15px;
+  flex-direction: column;
+  padding: 9px 14px;
+  bottom: -16px;
+  right: -18px;
+  transform: rotate(-4deg);
+}
+.auth-stat-chip b {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1;
+}
+.auth-stat-chip small {
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+  font-size: 9px;
+}
+.auth-float {
+  background: #ffffffe0;
+  border: 1px solid #ffffffe6;
+  border-radius: 50%;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  animation: 4.6s ease-in-out infinite authEmojiFloat;
+  display: grid;
+  position: absolute;
+  box-shadow: 0 12px 26px #46378c26;
+}
+.auth-float-smile {
+  top: 72px;
+  left: -44px;
+}
+.auth-float-heart {
+  animation-delay: -1.2s;
+  bottom: 72px;
+  right: -45px;
+}
+.auth-float-fire {
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+  animation-delay: -2.4s;
+  bottom: -3px;
+  left: -34px;
+}
+.auth-float-spark {
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  animation-delay: -3.2s;
+  top: -20px;
+  right: 2px;
+}
+@keyframes authEmojiFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+.login-brand-content {
+  z-index: 1;
+  width: min(600px, 100%);
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.auth-kicker {
+  color: var(--primary-700);
+  letter-spacing: 1.35px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  display: inline-block;
+}
+.login-brand-content h1 {
+  letter-spacing: -2.35px;
+  max-width: 430px;
+  margin: 0 0 12px;
+  font-size: clamp(38px, 4.2vw, 58px);
+  font-weight: 900;
+  line-height: 1.02;
+}
+.login-brand-content h1 em {
+  color: var(--primary);
+  font-style: normal;
+}
+.login-brand-content > p {
+  max-width: 440px;
+  color: var(--ink-2);
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.login-brand-foot {
+  z-index: 1;
+  color: var(--ink-3);
+  justify-content: space-between;
+  font-size: 10px;
+  display: flex;
+  position: absolute;
+  bottom: 28px;
+  left: 46px;
+  right: 46px;
+}
+.auth-scroll-cue {
+  display: none;
+}
+
+.login-form-panel {
+  background:
+    radial-gradient(circle at 78% 10%, #8c76ff80, #0000 48%),
+    radial-gradient(circle at 8% 92%, #6d5efc57, #0000 54%),
+    linear-gradient(158deg, #e0d9ff 0%, #c6b9fb 100%);
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  min-height: 0;
+  padding: 52px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.login-form-panel.is-login {
+  flex-direction: column;
+}
+.login-form-panel.is-register {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100svh;
+  padding-top: clamp(52px, 8.5svh, 84px);
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+.login-form-panel.is-register.register-step-1 {
+  padding-bottom: 0;
+  overflow-y: hidden;
+}
+.login-form-panel.is-register.register-step-3,
+.login-form-panel.is-register.register-step-4,
+.login-form-panel.is-register.register-step-5 {
+  overflow: hidden;
+}
+.register-step-3 .kol-step-shell,
+.register-step-4 .kol-step-shell,
+.register-step-5 .kol-step-shell {
+  min-height: 0;
+}
+.language-position {
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  right: 24px;
+}
+.language-switcher {
+  display: flex;
+  min-width: 88px;
+  padding: 3px 5px;
+  border: 0;
+  border-radius: 999px;
+  background: #f7f5ffb8;
+  box-shadow: 0 2px 8px #5743ad12;
+  backdrop-filter: blur(10px);
+}
+.language-switcher button {
+  border: 0;
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: transparent;
+  color: #918aa8;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    color 0.14s,
+    background 0.14s;
+}
+.language-switcher button.active {
+  color: var(--primary-700);
+  background: transparent;
+}
+.language-switcher button:hover {
+  color: var(--primary-700);
+  background: #ffffff80;
+}
+.language-switcher button:focus-visible {
+  outline: 2px solid #ffffffd9;
+  outline-offset: 1px;
+}
+.login-page-heading {
+  text-align: center;
+  width: min(430px, 100%);
+  margin: 0 auto 18px;
+}
+.login-page-heading .login-welcome-icon {
+  margin: 0 auto 12px;
+}
+.login-page-heading h1 {
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  margin: 0;
+  font-size: 27px;
+  line-height: 1.2;
+}
+.login-welcome-icon {
+  width: 42px;
+  height: 42px;
+  color: var(--primary-700);
+  background: var(--primary-soft);
+  border-radius: 12px;
+  place-items: center;
+  margin-bottom: 18px;
+  display: grid;
+}
+.login-welcome-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.login-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  width: min(430px, 100%);
+  box-shadow: var(--shadow-lg);
+  padding: 34px 36px 28px;
+}
+.login-intro {
+  color: var(--ink-3);
+  margin: 3px 0 34px;
+  font-size: 13px;
+}
+.login-form {
+  gap: 17px;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+}
+.login-field {
+  width: 100%;
+  min-width: 0;
+}
+.login-field > span:first-child {
+  color: var(--ink-2);
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+}
+.login-input {
+  border: 1px solid var(--line-2);
+  background: #fff;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+  height: 45px;
+  padding: 0 12px;
+  transition:
+    border-color 0.14s,
+    box-shadow 0.14s;
+  display: flex;
+}
+.login-input:focus-within {
+  border-color: #6d5efc99;
+  box-shadow: 0 0 0 3px #6d5efc1a;
+}
+.login-input > svg {
+  width: 17px;
+  height: 17px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+.login-input input {
+  min-width: 0;
+  color: var(--ink);
+  border: 0;
+  outline: 0;
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  background: transparent;
+}
+.login-input input::placeholder {
+  color: #a5abc0;
+}
+.login-input-action {
+  width: 28px;
+  height: 28px;
+  color: var(--ink-3);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  place-items: center;
+  padding: 0;
+  display: grid;
+}
+.login-input-action svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.login-input.has-error {
+  border-color: var(--red);
+}
+.login-input.has-error:focus-within {
+  box-shadow: 0 0 0 3px #dc26261a;
+}
+.login-error {
+  color: var(--red);
+  margin-top: 5px;
+  font-size: 11px;
+  display: block;
+}
+.login-submit {
+  color: #fff;
+  background: var(--primary);
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 45px;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background 0.14s,
+    transform 0.14s;
+  display: flex;
+  box-shadow: 0 5px 16px #6d5efc59;
+}
+.login-submit:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+}
+.login-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+.login-submit:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px #6d5efc2e;
+}
+.forgot-link {
+  color: var(--primary-700);
+  width: max-content;
+  margin-top: -5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login-staff-note {
+  color: var(--ink-3);
+  text-align: center;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding: 22px 4px 16px;
+  font-size: 11.5px;
+}
+.login-help-kol {
+  color: inherit;
+  background: var(--primary-soft);
+  border: 1px solid #cfc9ff;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 14px;
+  text-decoration: none;
+  transition:
+    border-color 0.16s,
+    background 0.16s,
+    box-shadow 0.16s,
+    transform 0.16s;
+  display: flex;
+}
+.login-help-kol span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.login-help-kol small {
+  color: var(--ink-3);
+  font-size: 11.5px;
+}
+.login-help-kol strong {
+  color: var(--primary-700);
+  font-size: 13.5px;
+}
+.login-help-kol-go {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 50%;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.14s;
+  display: inline-flex;
+}
+.login-help-kol:hover {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 8px 24px #6d5efc24;
+  transform: translateY(-1px);
+}
+.login-help-kol:hover .login-help-kol-go {
+  transform: translateX(2px);
+}
+.login-help-kol:focus-visible {
+  outline: 0;
+  border-color: var(--primary);
+  box-shadow:
+    0 0 0 3px #6d5efc24,
+    0 8px 24px #6d5efc20;
+}
+.login-help {
+  color: var(--ink-3);
+  text-align: center;
+  border-top: 1px solid var(--line);
+  margin: 22px 0 0;
+  padding-top: 18px;
+  font-size: 11.5px;
+}
+.login-help a {
+  color: var(--primary-700);
+  font-weight: 700;
+  text-decoration: none;
+}
+.login-success {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1px solid #16a34a33;
+  border-radius: 10px;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.login-back-public {
+  border: 1px solid #ffffffd0;
+  color: var(--ink-2);
+  border-radius: 999px;
+  align-self: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  padding: 7px 15px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 0.14s,
+    color 0.14s,
+    background 0.14s;
+  display: inline-flex;
+}
+.login-back-public:hover {
+  border-color: var(--primary);
+  color: var(--primary-700);
+  background: #fff;
+}
+.login-form-foot {
+  color: #261e529e;
+  gap: 18px;
+  font-size: 10.5px;
+  display: flex;
+  position: absolute;
+  bottom: 24px;
+}
+.login-form-foot a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* KOL registration — step 1 */
+.kol-step-shell {
+  width: min(500px, 100%);
+  min-height: 0;
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.kol-step-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  flex: none;
+}
+.kol-step-heading h1 {
+  color: #10132d;
+  letter-spacing: -0.7px;
+  margin: 0 0 17px;
+  font-size: 31px;
+  line-height: 1.15;
+}
+.kol-step-heading p {
+  color: #858ba5;
+  margin: 0;
+  font-size: 14px;
+}
+.kol-step-heading > small {
+  color: #858ba5;
+  margin-top: 10px;
+  font-size: 12px;
+  display: block;
+}
+.kol-step-progress {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 13px;
+  display: grid;
+}
+.kol-step-progress span {
+  background: #eef0ff;
+  border-radius: 999px;
+  height: 5px;
+}
+.kol-step-progress span.active {
+  background: #6859ff;
+}
+.kol-step-card {
+  background: #fff;
+  border: 1px solid #ececf4;
+  border-radius: 17px;
+  padding: 39px 40px 28px;
+  box-shadow: 0 15px 37px #5040ae2d;
+}
+.kol-step-form {
+  gap: 16px;
+  display: grid;
+}
+.kol-step-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  display: grid;
+}
+.kol-step-card .login-field > span:first-child {
+  color: #262d50;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.kol-step-card .login-input {
+  border-color: #d9ddea;
+  border-radius: 12px;
+  height: 52px;
+  padding: 0 14px;
+}
+.kol-step-card .login-input > svg {
+  color: #929bb9;
+  width: 19px;
+  height: 19px;
+}
+.kol-step-card .login-input input {
+  font-size: 15px;
+}
+.kol-step-card .login-input.has-error {
+  border-color: #ef3232;
+}
+.kol-step-card .login-error {
+  color: #e82929;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.kol-step-submit {
+  color: #fff;
+  background: #6858ff;
+  border: 0;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 47px;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  box-shadow: 0 7px 16px #6251ff40;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+.kol-step-submit:hover {
+  background: #5949ef;
+  transform: translateY(-1px);
+}
+.kol-step-submit:focus-visible {
+  outline: 3px solid #6c5cff36;
+  outline-offset: 2px;
+}
+.kol-step-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.kol-step-submit span {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+.kol-step-signin {
+  color: #9298af;
+  text-align: center;
+  border-top: 1px solid #e7e8ef;
+  margin: 27px 0 0;
+  padding-top: 24px;
+  font-size: 13px;
+}
+.kol-step-signin a {
+  color: #4033e8;
+  text-decoration: none;
+}
+.kol-option-section h2 {
+  color: #262d50;
+  margin: 0 0 11px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.kol-option-section > small {
+  color: #8f96b1;
+  margin-top: 8px;
+  font-size: 13px;
+  display: block;
+}
+.kol-expertise-options {
+  flex-wrap: wrap;
+  gap: 12px;
+  display: flex;
+}
+.kol-expertise-options button {
+  color: #3d3e54;
+  background: #fff;
+  border: 1px solid #d9ddea;
+  border-radius: 13px;
+  min-height: 48px;
+  padding: 0 19px;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+.kol-expertise-options button span {
+  display: none;
+}
+.kol-expertise-options button.selected {
+  color: #4b3cf1;
+  background: #faf9ff;
+  border-color: #6455ff;
+}
+.kol-expertise-options button.selected span {
+  border: 1px solid currentColor;
+  width: 15px;
+  height: 15px;
+  margin-right: 9px;
+  font-size: 11px;
+  line-height: 13px;
+  display: inline-block;
+}
+.kol-step-actions {
+  border-bottom: 1px solid #e7e8ef;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  padding-bottom: 30px;
+  display: flex;
+}
+.kol-step-actions button {
+  color: #27304f;
+  background: #fff;
+  border: 1px solid #dbe0eb;
+  border-radius: 999px;
+  min-height: 50px;
+  padding: 0 19px;
+  font: inherit;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.kol-step-actions button.continue {
+  color: #fff;
+  background: #6858ff;
+  border-color: #6858ff;
+  flex: 1;
+  gap: 11px;
+  padding: 0 24px;
+  font-weight: 800;
+  box-shadow: 0 9px 20px #6251ff40;
+}
+.kol-step-actions button.continue span {
+  margin-left: 8px;
+  font-size: 21px;
+}
+.kol-preference-card .kol-step-signin,
+.kol-social-step-card .kol-step-signin {
+  border-top: 0;
+  margin-top: 0;
+}
+.kol-step-shell.step-3 {
+  width: min(500px, 100%);
+}
+.kol-social-step-card {
+  padding-top: 43px;
+}
+.register-step-3 .kol-social-step-card,
+.register-step-4 .kol-address-step-card {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  flex: 1;
+}
+.register-step-3 .kol-social-step-card::-webkit-scrollbar,
+.register-step-4 .kol-address-step-card::-webkit-scrollbar {
+  width: 8px;
+}
+.register-step-3 .kol-social-step-card::-webkit-scrollbar-track,
+.register-step-4 .kol-address-step-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+.register-step-3 .kol-social-step-card::-webkit-scrollbar-thumb,
+.register-step-4 .kol-address-step-card::-webkit-scrollbar-thumb {
+  background: #7565cf70;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+.kol-platform-options {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  display: grid;
+}
+.kol-platform-options button {
+  color: #252c4c;
+  background: #f7f8fc;
+  border: 1px solid #dde1eb;
+  border-radius: 13px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 92px;
+  padding: 11px 5px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+}
+.kol-platform-options button.selected {
+  color: #4938ed;
+  background: #fbfaff;
+  border-color: #6252ff;
+}
+.kol-platform-mark {
+  border-radius: 9px;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  line-height: 1;
+  display: grid;
+  flex: none;
+  overflow: hidden;
+}
+.kol-platform-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.kol-selected-socials {
+  gap: 18px;
+  margin-top: 18px;
+  display: grid;
+}
+.kol-social-form-card {
+  border: 1px solid #dce0eb;
+  border-radius: 16px;
+  padding: 19px;
+}
+.kol-social-form-card > header {
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  display: flex;
+}
+.kol-social-form-card > header strong {
+  color: #171d3b;
+  font-size: 17px;
+}
+.kol-social-form-card > header button {
+  color: #939bb8;
+  background: #fff;
+  border: 1px solid #dce0eb;
+  border-radius: 10px;
+  width: 39px;
+  height: 39px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.kol-social-form-card > header button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  width: 18px;
+  height: 18px;
+}
+.kol-social-main-fields {
+  grid-template-columns: 1fr 0.85fr;
+  gap: 16px;
+  display: grid;
+}
+.kol-social-main-fields label,
+.kol-social-rates label {
+  color: #242c50;
+  gap: 8px;
+  min-width: 0;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.kol-social-input {
+  border: 1px solid #d9ddea;
+  border-radius: 13px;
+  align-items: center;
+  height: 57px;
+  padding: 0 15px;
+  display: flex;
+}
+.kol-social-input b {
+  color: #929bb9;
+  font-size: 20px;
+}
+.kol-social-input input,
+.kol-rate-input-new input {
+  color: #202847;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  min-width: 0;
+  width: 100%;
+  padding-left: 12px;
+  font: inherit;
+  font-size: 15px;
+}
+.kol-social-rate-card {
+  background: #f5f6fb;
+  border-radius: 13px;
+  margin-top: 15px;
+  padding: 16px;
+}
+.kol-social-rate-card > div:first-child {
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+  display: flex;
+}
+.kol-social-rate-card small {
+  color: #8d95b1;
+}
+.kol-social-rates {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  display: grid;
+}
+.kol-rate-input-new {
+  background: #fff;
+  border: 1px solid #dce0eb;
+  border-radius: 11px;
+  align-items: center;
+  height: 52px;
+  padding: 0 12px;
+  display: flex;
+}
+.kol-rate-input-new b {
+  color: #929ab4;
+}
+.kol-address-step-card,
+.kol-payment-step-card {
+  padding-top: 43px;
+}
+.kol-address-form,
+.kol-payment-form {
+  gap: 17px 16px;
+  display: grid;
+}
+.kol-address-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.kol-address-form label,
+.kol-payment-form label {
+  color: #242c50;
+  gap: 8px;
+  min-width: 0;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.kol-address-form .kol-address-wide {
+  grid-column: 1 / -1;
+}
+.kol-address-form textarea {
+  color: #202847;
+  border: 1px solid #d9ddea;
+  outline: 0;
+  border-radius: 13px;
+  width: 100%;
+  min-height: 105px;
+  padding: 15px;
+  resize: vertical;
+  font: inherit;
+  font-size: 15px;
+}
+.kol-address-form textarea::placeholder,
+.kol-address-control input::placeholder,
+.kol-payment-control input::placeholder {
+  color: #a9b0ca;
+}
+.kol-address-form textarea:focus,
+.kol-address-control:focus-within,
+.kol-payment-control:focus-within {
+  border-color: #7567ff;
+  box-shadow: 0 0 0 3px #6c5cff1c;
+}
+.kol-address-control,
+.kol-payment-control {
+  border: 1px solid #d9ddea;
+  border-radius: 13px;
+  align-items: center;
+  min-width: 0;
+  height: 57px;
+  padding: 0 14px;
+  display: flex;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.kol-address-control svg,
+.kol-payment-control svg {
+  color: #9099b8;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  width: 21px;
+  height: 21px;
+  flex: none;
+}
+.kol-address-control input,
+.kol-address-control select,
+.kol-payment-control input,
+.kol-payment-control select {
+  color: #202847;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 11px;
+  font: inherit;
+  font-size: 15px;
+}
+.kol-address-control select:invalid,
+.kol-address-control select:has(option[value=""]:checked) {
+  color: #a9b0ca;
+}
+.kol-payment-control select:has(option[value=""]:checked) {
+  color: #a9b0ca;
+}
+.kol-payment-step-card .kol-step-actions .continue {
+  min-width: 0;
+}
+
+@media (min-width: 981px) and (max-height: 950px) {
+  .login-form-panel.is-register {
+    padding-bottom: 22px;
+  }
+  .kol-preference-card .kol-step-signin,
+  .kol-social-step-card .kol-step-signin {
+    margin-top: 0;
+  }
+  .kol-social-step-card {
+    padding-top: 28px;
+  }
+}
+
+@media (max-width: 980px), (orientation: portrait) and (max-width: 1100px) {
+  .login-page {
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    flex-direction: column;
+    height: 100svh;
+    min-height: 100svh;
+    display: flex;
+    overflow-y: auto;
+  }
+  .login-brand-panel {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    text-align: center;
+    order: 1;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
+    padding: 34px 24px 88px;
+  }
+  .login-form-panel {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    order: 2;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
+    padding: 52px 24px 76px;
+  }
+  .login-form-panel.is-register {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+  .login-form-panel.is-register.register-step-1 {
+    padding-bottom: 76px;
+    overflow: visible;
+  }
+  .login-form-panel.is-register.register-step-3,
+  .login-form-panel.is-register.register-step-4,
+  .login-form-panel.is-register.register-step-5 {
+    height: auto;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+  .kol-step-shell {
+    margin: auto;
+  }
+  .kol-step-shell {
+    display: block;
+  }
+  .register-step-3 .kol-social-step-card,
+  .register-step-4 .kol-address-step-card {
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+  .login-brand-panel .auth-visual {
+    width: 210px;
+    height: 274px;
+    margin: 0 auto 10px;
+  }
+  .login-brand-content {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 26px 0 0;
+    display: flex;
+  }
+  .login-brand-content h1 {
+    letter-spacing: -1px;
+    font-size: 30px;
+  }
+  .login-brand-foot {
+    display: none;
+  }
+  .auth-scroll-cue {
+    z-index: 2;
+    color: var(--primary-700);
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    animation: 1.8s ease-in-out infinite authCueFloat;
+    display: inline-flex;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .auth-scroll-cue span {
+    color: var(--ink-3);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .auth-scroll-cue b {
+    color: var(--ink);
+    font-size: 17px;
+  }
+  .auth-scroll-cue::after {
+    content: "";
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+  @keyframes authCueFloat {
+    0%,
+    100% {
+      translate: 0;
+    }
+    50% {
+      translate: 0 8px;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .login-brand-panel {
+    padding: 26px 18px 86px;
+  }
+  .login-brand-panel .auth-visual {
+    width: 190px;
+    height: 248px;
+  }
+  .login-brand-content {
+    padding-top: 18px;
+  }
+  .login-brand-content h1 {
+    font-size: 29px;
+  }
+  .login-brand-content > p {
+    font-size: 13px;
+  }
+  .login-form-panel {
+    padding: 40px 14px 72px;
+  }
+  .login-page-heading,
+  .login-card {
+    width: min(430px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .login-card {
+    border-radius: 14px;
+    padding: 27px 22px 24px;
+  }
+  .login-form-panel.is-register {
+    padding-top: 70px;
+  }
+  .login-input input {
+    font-size: 16px;
+  }
+  .kol-step-heading h1 {
+    font-size: 29px;
+  }
+  .kol-step-card {
+    border-radius: 16px;
+    padding: 29px 21px 25px;
+  }
+  .kol-step-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .kol-platform-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kol-social-main-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kol-social-rates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kol-address-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kol-address-form .kol-address-wide {
+    grid-column: auto;
+  }
+  .kol-step-actions {
+    flex-wrap: wrap;
+  }
+  .kol-step-actions button.continue {
+    flex-basis: 100%;
+    order: -1;
+  }
+  .kol-step-actions button:not(.continue) {
+    flex: 1;
+    padding: 0 10px;
+  }
+  .login-form-foot {
+    white-space: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: max-content;
+    max-width: calc(100% - 28px);
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-float,
+  .auth-scroll-cue {
+    animation: none;
+  }
+}
+
